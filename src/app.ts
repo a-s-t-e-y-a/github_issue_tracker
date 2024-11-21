@@ -29,8 +29,8 @@ export class Application {
     const swaggerPath = this.configService.get('swagger.path');
     if (this.configService.get('swagger.enabled')) {
       const config = new DocumentBuilder()
-        .setTitle('Server Starter')
-        .setDescription('API for Server Starter')
+        .setTitle('Github Issues Tracker')
+        .setDescription('API for Github Issues Tracker')
         .setVersion('1.0')
         .addTag('issues')
         .addBearerAuth()
