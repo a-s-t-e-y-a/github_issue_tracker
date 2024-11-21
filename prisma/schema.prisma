@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+/// change according to your requirements
+model username {
+  id            Int         @id @default(autoincrement())
+  username      String      @unique
+  slack_webhook String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  githubUrl     githubUrl[]
+
+  @@index([username])
+}
+
+model githubUrl {
+  id          Int      @id @default(autoincrement())
+  url         String
+  type_issues String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  username    username @relation(fields: [usernameId], references: [id])
+  usernameId  Int
+
+  @@index([url])
+}
